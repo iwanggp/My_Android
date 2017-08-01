@@ -9,7 +9,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".CameraActivity"
+            android:name=".ListNameActivity"
             android:configChanges="keyboardHidden|orientation|screenSize">//主要是防止屏幕旋转调用生命周期的
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
