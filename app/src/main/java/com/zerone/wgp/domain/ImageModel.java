@@ -9,31 +9,31 @@ import java.net.URL;
  * 创建一个图片的bean
  */
 public class ImageModel {
-	private String url;
-	private Bitmap mBitmap;
-	private String stocck;
+    private String url;
+    private Bitmap mBitmap;
+    private String stocck;
 
-	public String getStocck() {
-		return stocck;
-	}
+    public String getStocck() {
+        return stocck;
+    }
 
-	public void setStocck(String stocck) {
-		this.stocck = stocck;
-	}
+    public void setStocck(String stocck) {
+        this.stocck = stocck;
+    }
 
-	public String getUrl() {
-		return url;
-	}
+    public String getUrl() {
+        return url;
+    }
 
-	public void setUrl(String url) {
-		this.url = url;
-	}
+    public void setUrl(String url) {
+        this.url = url;
+    }
 
-	public Bitmap getBitmap() {
-		return mBitmap;
-	}
+    public Bitmap getBitmap() {
+        return mBitmap;
+    }
 
-	public void setBitmap(Bitmap bitmap) {
-		mBitmap = bitmap;
-	}
+    public void setBitmap(Bitmap bitmap) {
+        mBitmap = bitmap;
+    }
 }

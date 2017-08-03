@@ -51,11 +51,11 @@ public class HandlerDemoActivity extends AppCompatActivity {
 				System.out.println("DownLoadThred id is " + Thread.currentThread().getId());
 				Thread.sleep(5000);
 				System.out.println("下载完成");
-				Message message = new Message();
-				message.what = 1;
-				message.arg1 = 1;
-				message.arg2 = 3;
-				message.obj = "ssss";
+//				Message message = new Message();
+//				message.what = 1;
+//				message.arg1 = 1;
+//				message.arg2 = 3;
+//				message.obj = "ssss";
 
 				//下载完成后开始更新UI
 //				Runnable runnable = new Runnable() {
