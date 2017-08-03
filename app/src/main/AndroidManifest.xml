@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="com.zerone.wgp.activities">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,7 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".HandlerDemoActivity"
+            android:name=".HandlerThreadDemo"
             android:configChanges="keyboardHidden|orientation|screenSize">
             //主要是防止屏幕旋转调用生命周期的
             <intent-filter>
@@ -29,7 +31,11 @@
                 android:resource="@xml/files"/>
         </provider>
 
-        <!--<activity android:name=".HandlerDemoActivity">-->
+        <!-- <activity android:name=".HandlerDemoActivity"> -->
+        <!-- </activity> -->
+        <!-- <activity android:name=".HandlerThreadDemo"> -->
+        <!-- </activity> -->
+        <!--<activity android:name=".HandlerDemo">-->
         <!--</activity>-->
     </application>
 
