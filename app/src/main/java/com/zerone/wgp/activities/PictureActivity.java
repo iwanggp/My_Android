@@ -33,6 +33,7 @@ public class PictureActivity extends BaseFragmentActivity {
             Log.d(TAG, "Thread id is " + Thread.currentThread().getId() + "----------->>>>>>>>>>");
             mList = (List<ImageModel>) msg.obj;
             Log.d(TAG, "handleMessage: " + mList.size());
+            createFragment();
         }
     };
 
@@ -56,22 +57,18 @@ public class PictureActivity extends BaseFragmentActivity {
                 List<ImageModel> modelLists = new ArrayList<ImageModel>();
                 Log.d(TAG, "src----" + HttpUtil.getImgSrc("http://image.baidu.com/search/index?tn=baiduimage&ps=1&ct=201326592&lm=-1&cl=2&nc=1&ie=utf-8&word=%E5%91%A8%E6%9D%B0%E4%BC%A6").toString());
                 List<String> ll = HttpUtil.getImgSrc("http://image.baidu.com/search/index?tn=baiduimage&ps=1&ct=201326592&lm=-1&cl=2&nc=1&ie=utf-8&word=%E5%91%A8%E6%9D%B0%E4%BC%A6");
+                Log.d(TAG, "llllllll"+ll.toString()+"========>>>>>>>>>");
                 for (String _list : ll) {
                     Bitmap bitmap = downloaderUrlBitmap(_list);
                     ImageModel imageModel = new ImageModel();
                     imageModel.setBitmap(bitmap);
                     modelLists.add(imageModel);
                 }
-//			Bitmap bitmap = downloaderUrlBitmap(url[message.what]);
-//			String result = "实时更新中，当前大盘指数：<font color='red'>%d</font>";
-//			result = String.format(result, (int) (Math.random() * 3000 + 1000));
-//			ImageModel imageModel = new ImageModel();
-//			imageModel.setUrl(url[message.what]);
-//			imageModel.setBitmap(bitmap);
-//			imageModel.setStocck(result);
+                Log.d(TAG, "modelList==="+modelLists.toString());
                 Message msg1 = new Message();
                 msg1.what = message.what;
                 msg1.obj = modelLists;
+                Log.d(TAG, "obj obj obj "+msg1.obj.toString());
                 mHandler.sendMessage(msg1);
 //			//通知主线程更新UI
             } catch (Exception e) {
