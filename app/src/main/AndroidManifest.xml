@@ -11,7 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".HandlerThreadDemo"
+            android:name=".PictureActivity"
             android:configChanges="keyboardHidden|orientation|screenSize">
             //主要是防止屏幕旋转调用生命周期的
             <intent-filter>

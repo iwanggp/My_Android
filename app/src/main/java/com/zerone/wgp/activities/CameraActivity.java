@@ -1,6 +1,9 @@
 package com.zerone.wgp.activities;
 
+import android.provider.Settings;
+import android.provider.Telephony;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 
 import com.zerone.wgp.abclass.BaseFragmentActivity;
 import com.zerone.wgp.fragment.CameraFragment;
@@ -10,8 +13,16 @@ import com.zerone.wgp.fragment.CameraFragment;
  */
 
 public class CameraActivity extends BaseFragmentActivity {
-	@Override
-	protected Fragment createFragment() {
-		return CameraFragment.newInstance();
-	}
+    private static final String TAG = "CameraActivity";
+
+    @Override
+    protected Fragment createFragment() {
+        CameraActivity.myRun();
+        return CameraFragment.newInstance();
+    }
+
+    public static void myRun() {
+        Log.d(TAG, "myRun: " + Thread.currentThread().getId());
+    }
+
 }
