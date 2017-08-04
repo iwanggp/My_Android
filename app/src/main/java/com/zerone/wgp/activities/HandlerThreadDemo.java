@@ -52,7 +52,7 @@ public class HandlerThreadDemo extends AppCompatActivity {
 			List<ImageModel> mList = (List<ImageModel>) msg.obj;
 //			ImageModel imageModel = (ImageModel) msg.obj;
 //			for (int i = 0; i < mList.size(); i++) {
-			iv_photo.setImageBitmap(mList.get(2).getBitmap());
+			iv_photo.setImageBitmap(mList.get(5).getBitmap());
 //			}
 //			tv_stock.setText(Html.fromHtml(imageModel.getStocck()));
 		}
