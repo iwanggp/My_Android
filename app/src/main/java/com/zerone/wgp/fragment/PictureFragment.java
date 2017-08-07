@@ -83,7 +83,7 @@ public class PictureFragment extends Fragment implements LoaderManager.LoaderCal
 		getLoaderManager().initLoader(0, null, this);
 	}
 
-	//当Loader使用完成后
+	//当Loader使用完成后,data为返回的数据
 	@Override
 	public void onLoadFinished(Loader loader, Object data) {
 		imagesList = (List<String>) data;
