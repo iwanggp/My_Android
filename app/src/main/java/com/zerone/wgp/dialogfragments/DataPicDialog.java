@@ -7,6 +7,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;//记得也从v4.app中导入DialogFragment
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,6 +32,7 @@ public class DataPicDialog extends DialogFragment {
 	private static final String ARG_DATE = "date";
 	private DatePicker mDatePicker;
 	private static SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+	private AlertDialog dialog;
 
 	/**
 	 * 用来接受传递过来的值方法
@@ -58,7 +61,7 @@ public class DataPicDialog extends DialogFragment {
 				.inflate(R.layout.dialog_date, null);
 		mDatePicker = v.findViewById(R.id.dialog_data);
 		mDatePicker.init(year, mouth, day, null);
-		return new AlertDialog.Builder(getActivity())
+		return dialog = new AlertDialog.Builder(getActivity())
 				.setView(v)
 				.setTitle("Haoxiaoqian")
 				.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
@@ -75,14 +78,22 @@ public class DataPicDialog extends DialogFragment {
 						sendResult(Activity.RESULT_OK, sdf.format(date));
 					}
 				})
+				.setNeutralButton("sss", new DialogInterface.OnClickListener() {
+					@Override
+					public void onClick(DialogInterface dialogInterface, int i) {
+
+					}
+				})
 				.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
 					@Override
 					public void onClick(DialogInterface dialogInterface, int i) {
 						dismiss();
 					}
 				})
+				.setCancelable(true)
 				.create();
 	}
+
 
 	private void sendResult(int resultCode, String date) {
 		if (getTargetFragment() == null) {
@@ -91,5 +102,60 @@ public class DataPicDialog extends DialogFragment {
 		Intent intent = new Intent();
 		intent.putExtra(EXTRA_DATA, date);
 		getTargetFragment().onActivityResult(getTargetRequestCode(), resultCode, intent);
+	}
+
+	/**
+	 * 防止Dialog多次弹出
+	 *
+	 * @param fragmentManager fragment管理者
+	 * @param activity        Activity上下文
+	 * @return
+	 */
+	public static DataPicDialog showDialog(FragmentManager fragmentManager, FragmentActivity activity) {
+		DataPicDialog dataPicDialog =
+				(DataPicDialog) fragmentManager.findFragmentByTag(TAG);
+		if (null == dataPicDialog) {
+			dataPicDialog = newInstance(new Date());
+		}
+
+		if (!activity.isFinishing()
+				&& null != dataPicDialog
+				&& !dataPicDialog.isAdded()) {
+			fragmentManager.beginTransaction()
+					.add(dataPicDialog, TAG)
+					.commitAllowingStateLoss();
+		}
+
+		return dataPicDialog;
+	}
+
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		Log.d(TAG, "onCreate: ....run");
+	}
+
+	@Override
+	public void onStart() {
+		super.onStart();
+		Log.d(TAG, "onStart: ...run");
+	}
+
+	@Override
+	public void onResume() {
+		super.onResume();
+		Log.d(TAG, "onResume: ..run");
+	}
+
+	@Override
+	public void onStop() {
+		super.onStop();
+		Log.d(TAG, "onStop: ...run");
+	}
+
+	@Override
+	public void onDestroy() {
+		super.onDestroy();
+		Log.d(TAG, "onDestroy: ...run");
 	}
 }

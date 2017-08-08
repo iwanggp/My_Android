@@ -27,7 +27,12 @@
         android:id="@+id/bt_confirm"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="confirm"
-        />
+        android:text="confirm"/>
+
+    <Button
+        android:id="@+id/bt_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="bottom"/>
 
 </LinearLayout>
