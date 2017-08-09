@@ -18,7 +18,9 @@ import android.widget.Toast;
 import com.mylhyl.circledialog.CircleDialog;
 import com.zerone.wgp.activities.R;
 import com.zerone.wgp.dialogfragments.BottomDialog;
-import com.zerone.wgp.dialogfragments.DataPicDialog;
+import com.zerone.wgp.dialogfragments.DatePicDialog;
+
+import java.util.Date;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
@@ -85,7 +87,7 @@ public class MyDialogFragment extends Fragment {
 			@Override
 			public void onClick(View view) {
 				FragmentManager fragmentManager = getFragmentManager();
-				DataPicDialog dataPicDialog = DataPicDialog.showDialog(fragmentManager, getActivity());
+				DatePicDialog dataPicDialog = DatePicDialog.showDialog(fragmentManager, getActivity(),new Date());
 				//设置目标Fragment和相应的请求码
 				dataPicDialog.setTargetFragment(MyDialogFragment.this, REQUEST_CODE);
 			}
@@ -107,7 +109,7 @@ public class MyDialogFragment extends Fragment {
 			return;
 		}
 		if (requestCode == REQUEST_CODE) {
-			String date = (String) data.getSerializableExtra(DataPicDialog.EXTRA_DATA);
+			String date = (String) data.getSerializableExtra(DatePicDialog.EXTRA_DATA);
 			tv_date.setText(date);
 		}
 	}

@@ -6,12 +6,14 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;//记得也从v4.app中导入DialogFragment
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.DatePicker;
 
 import com.zerone.wgp.activities.R;
@@ -25,10 +27,10 @@ import java.util.GregorianCalendar;
  * Created by D22391 on 2017/8/7.
  */
 
-public class DataPicDialog extends DialogFragment {
-	public static final String EXTRA_DATA = "com.zerone.wgp.fragment.datapicdialog";
+public class DatePicDialog extends DialogFragment {
+	public static final String EXTRA_DATA = "com.zerone.wgp.fragment.DatePicDialog";
 
-	private static final String TAG = "DataPicDialog";
+	private static final String TAG = "DatePicDialog";
 	private static final String ARG_DATE = "date";
 	private DatePicker mDatePicker;
 	private static SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -40,20 +42,21 @@ public class DataPicDialog extends DialogFragment {
 	 * @param date 接受传递的值
 	 * @return
 	 */
-	public static DataPicDialog newInstance(Date date) {
+	public static DatePicDialog newInstance(Date date) {
 		Bundle args = new Bundle();
 		args.putSerializable(ARG_DATE, date);
-		DataPicDialog dataPicDialog = new DataPicDialog();
-		dataPicDialog.setArguments(args);//这里设置参数值，后面在获得
-		return dataPicDialog;
+		DatePicDialog DatePicDialog = new DatePicDialog();
+		DatePicDialog.setArguments(args);//这里设置参数值，后面在获得
+		return DatePicDialog;
 	}
 
 	@Override
 	public Dialog onCreateDialog(Bundle savedInstanceState) {
+		Log.d(TAG, "onCreateDialog: ...run");
 		Date date = (Date) getArguments().getSerializable(ARG_DATE);//在这里获得传进来的值
 		Calendar calendar = Calendar.getInstance();
 		calendar.setTime(date);
-//		calendar.add(Calendar.YEAR, 6);
+		calendar.add(Calendar.YEAR, 6);
 		int year = calendar.get(Calendar.YEAR);
 		int mouth = calendar.get(Calendar.MONTH);
 		int day = calendar.get(Calendar.DAY_OF_MONTH);
@@ -97,6 +100,7 @@ public class DataPicDialog extends DialogFragment {
 
 	private void sendResult(int resultCode, String date) {
 		if (getTargetFragment() == null) {
+			Log.d(TAG, "sendResult: ..run");
 			return;
 		}
 		Intent intent = new Intent();
@@ -109,24 +113,33 @@ public class DataPicDialog extends DialogFragment {
 	 *
 	 * @param fragmentManager fragment管理者
 	 * @param activity        Activity上下文
+	 * @param date            附属Fragment要传递的值
 	 * @return
 	 */
-	public static DataPicDialog showDialog(FragmentManager fragmentManager, FragmentActivity activity) {
-		DataPicDialog dataPicDialog =
-				(DataPicDialog) fragmentManager.findFragmentByTag(TAG);
-		if (null == dataPicDialog) {
-			dataPicDialog = newInstance(new Date());
+	public static DatePicDialog showDialog(FragmentManager fragmentManager, FragmentActivity activity, Date date) {
+		DatePicDialog DatePicDialog =
+				(DatePicDialog) fragmentManager.findFragmentByTag(TAG);
+		if (null == DatePicDialog) {
+			DatePicDialog = newInstance(date);
 		}
 
 		if (!activity.isFinishing()
-				&& null != dataPicDialog
-				&& !dataPicDialog.isAdded()) {
+				&& null != DatePicDialog
+				&& !DatePicDialog.isAdded()) {
 			fragmentManager.beginTransaction()
-					.add(dataPicDialog, TAG)
+					.add(DatePicDialog, TAG)
 					.commitAllowingStateLoss();
 		}
 
-		return dataPicDialog;
+		return DatePicDialog;
+	}
+
+	@Nullable
+	@Override
+	public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+		Log.d(TAG, "onCreateView: ..run");
+		View view = inflater.inflate(R.layout.camera_fragment, container, false);
+		return view;
 	}
 
 	@Override

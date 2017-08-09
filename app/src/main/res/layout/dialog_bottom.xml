@@ -6,20 +6,20 @@
               android:gravity="center"
               android:orientation="vertical">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_gravity="center">
+    <!--<LinearLayout-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="60dp"-->
+    <!--android:layout_gravity="center">-->
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:text="删除后，将清空全部订阅号内容"
-            />
+    <!--<TextView-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:layout_gravity="center"-->
+    <!--android:gravity="center"-->
+    <!--android:text="删除后，将清空全部订阅号内容"-->
+    <!--/>-->
 
-    </LinearLayout>
+    <!--</LinearLayout>-->
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -33,7 +33,7 @@
             android:layout_height="40dp"
             android:layout_gravity="center"
             android:gravity="center"
-            android:text="bottom"
+            android:text="请输入"
             android:textColor="@color/red_btn_bg_color"
             android:textSize="18sp"/>
 

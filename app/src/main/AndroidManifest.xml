@@ -35,7 +35,9 @@
         <!-- </activity> -->
         <!-- <activity android:name=".HandlerThreadDemo"> -->
         <!-- </activity> -->
-        <!--<activity android:name=".HandlerDemo">-->
+        <!-- <activity android:name=".HandlerDemo"> -->
+        <!-- </activity> -->
+        <!--<activity android:name=".DialogDemoActivity">-->
         <!--</activity>-->
     </application>
 
